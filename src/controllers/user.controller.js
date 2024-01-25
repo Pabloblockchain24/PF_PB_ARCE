@@ -187,7 +187,7 @@ export const sendMail = async (req, res) => {
     const resetToken = await createResetToken({ id: user._id })
     user.resetToken = resetToken;
     await usersService.updateUserById(user._id, user);
-    const resetLink = `http://localhost:8080/api/users/passwordRequestResetPassword/${resetToken}`
+    const resetLink = `https://pfpbarce-production.up.railway.app/api/users/passwordRequestResetPassword/${resetToken}`
 
     const transporter = nodemailer.createTransport({
         service: "gmail",
