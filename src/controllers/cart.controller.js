@@ -96,7 +96,7 @@ export const postProductInCart = async (req, res) => {
         try {
             const productoEnCarrito = carrito.products.find((prod) => prod.product.equals(producto._id))
             if (!productoEnCarrito) {
-                const nuevoProduct = { product: producto._id, quantity: 1 }
+                const nuevoProduct = { product: producto, quantity: 1 }
                 carrito.products.push(nuevoProduct)
             } else {
                 productoEnCarrito.quantity++
