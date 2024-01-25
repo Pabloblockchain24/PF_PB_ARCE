@@ -1,0 +1,95 @@
+<!-- checkout.hbs -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .checkout-card {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 1%;
+            width: 70%;
+            padding: 15px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        h3 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .total-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btnFinal {
+            padding: 10px;
+            background-color: #fff;
+            color: #4CAF50;
+            border: 1px solid #4CAF50;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btnFinal:hover {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Carrito de compras: {{cart.products.length}}</h1>
+
+    {{#if cart.products.length}}
+    {{#each cart.products}}
+    <div class="checkout-card">
+        <p><strong>Nombre:</strong> {{product.nombre}}</p>
+        <p><strong>Cantidad:</strong> {{quantity}}</p>
+        <p><strong>Precio unitario:</strong> {{product.precio}}</p>
+    </div>
+    {{/each}}
+
+    <div class="button-container">
+        <a href="/api/products" class="btnFinal">SEGUIR COMPRANDO</a>
+
+        <form method="POST" action="/api/carts/{{cart._id}}/purchase">
+            <button type="submit" class="btnFinal">FINALIZAR COMPRA</button>
+        </form>
+    </div>
+    {{else}}
+    <p>No hay productos en el carrito.</p>
+    {{/if}}
+</body>
+
+</html>

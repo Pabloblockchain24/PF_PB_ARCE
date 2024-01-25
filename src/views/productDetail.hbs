@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{name}} - Detalle del Producto</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 15px;
+            padding-block: 2%;
+            width: 35%;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>{{name}} - Detalle del Producto</h1>
+
+    <div class="product-card">
+        <p>Nombre: {{name}}</p>
+        <p>Descripción: {{descripcion}}</p>
+        <p>Categoría: {{category}}</p>
+        <p>Precio: {{precio}}</p>
+        <p>Stock: {{stock}}</p>
+
+        <form method="POST" action="/api/carts/{{cart}}/products/{{id}}" class="button">
+            <button type="submit">Agregar al carrito</button>
+        </form>
+
+    </div>
+</body>
+
+</html>

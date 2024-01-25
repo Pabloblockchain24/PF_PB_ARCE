@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>PERFIL</h1>
+    <p>NOMBRE: {{first_name}} {{last_name}}</p>
+    <p>EMAIL: {{email}}</p>
+    <p>AGE: {{age}}</p>
+    <form method="POST" action="/api/users/logout">
+        <button type="submit">LOGOUT</button>
+    </form>
+    <hr>
+
+    <p>STATUS USUARIO: {{status}}</p>
+
+
+    <h3>Documentos usuario:</h3>
+
+    <form action="/api/users/{{id}}/documents" method="post" enctype="multipart/form-data">
+        <div>
+            <label for="identificacion">Identificación:</label>
+            <input type="file" id="identificacion" name="identificacion" multiple >
+        </div>
+        <div>
+            <label for="comprobante_domicilio">Comprobante domicilio:</label>
+            <input type="file" id="comprobante_domicilio" name="comprobante_domicilio" multiple >
+        </div>
+        <div>
+            <label for="estado_cuenta">Comprobante estado de cuenta:</label>
+            <input type="file" id="estado_cuenta" name="estado_cuenta" multiple >
+        </div>
+        <button type="submit">Subir archivos</button>
+    </form>
+
+    <hr>
+    <h3>FOTO DE PERFIL:</h3>
+        <form action="/api/users/{{id}}/profiles" method="post" enctype="multipart/form-data">
+            <label for="perfil">Foto de perfil:</label>
+            <input type="file" id="perfil" name="perfil" required >
+            <button type="submit">Subir foto perfil</button>
+        </form>
+    <hr>
+
+        <h3>SUBIR PRODUCTO:</h3>
+        <form action="/api/users/{{id}}/products" method="post" enctype="multipart/form-data">
+            <label for="product">Producto:</label>
+            <input type="file" id="product" name="product" required >
+            <button type="submit">Subir producto</button>
+        </form>
+    <hr>
+
+
+    <div>
+        <h1>Pregunta lo que quieras en nuestro chat (Solo para usuarios logueados)</h1>
+        <form method="post" action="/api/message/send">
+            <input type="text" name="message" placeholder="Escribe tu mensaje">
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+
+    <hr>
+    <hr>
+    <hr>
+
+    <h3>CARRITO DE COMPRAS DE {{email}} ({{cart.length}})</h3>
+    <p> {{msg}}</p>
+    {{#each cart}}
+    <p>Nombre: {{product.nombre}} </p>
+    <p>Descripcion: {{product.descripcion}}</p>
+    <p>Categoria:{{product.category}}</p>
+    <p>Precio: {{product.precio}}</p>
+    <p>Stock: {{product.stock}}</p>
+    <h5>CANTIDAD A COMPRAR: {{quantity}}</h5>
+    <hr>
+    {{/each}}
+
+
+      <h3> IR A COMPRAR PRODUCTOS</h3>
+    <form method="GET" action="/api/products">
+        <button type="submit">COMPRAR</button>
+    </form>
+
+</body>
+
+</html>
