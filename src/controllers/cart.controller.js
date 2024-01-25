@@ -102,7 +102,9 @@ export const postProductInCart = async (req, res) => {
                 productoEnCarrito.quantity++
             }
             let result = await carrito.save();
-            res.send({ result: "success", payload: result })
+            res.render("finalizarCompra.hbs", {
+                cart: carrito,
+            })
         } catch (error) {
             console.log(error)
         }
@@ -161,7 +163,7 @@ export const purchaseCart = async (req, res) => {
 
         const purchaseDate = new Date(timestamp);
         const formattedDate = `${padNumber(purchaseDate.getDate())}-${padNumber(purchaseDate.getMonth() + 1)}-${purchaseDate.getFullYear()} ${padNumber(purchaseDate.getHours())}:${padNumber(purchaseDate.getMinutes())}`;
-        
+
         function padNumber(number) {
             return number.toString().padStart(2, '0');
         }
@@ -178,9 +180,9 @@ export const purchaseCart = async (req, res) => {
             res.send({ message: `Su ticket es: ${JSON.stringify(newTicket)} y quedaron sin comprar por falta de stock: ${JSON.stringify(notPurchase)}` })
             return
         }
-        
-        res.render("compraFinalizada.hbs",{
-            ticket:newTicket,
+
+        res.render("compraFinalizada.hbs", {
+            ticket: newTicket,
         })
     }
 }
